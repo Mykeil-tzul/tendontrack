@@ -50,13 +50,7 @@ This dashboard mirrors the kind of insights Visa Consulting and Analytics (VCA) 
 - Dataset had to be manually downloaded and prepped due to GitHub preview limitations  
 - Figuring out Tableau's Quick Table Calculations and percent conversions took trial + error  
 - Learned how to properly structure GitHub projects and push using terminal step-by-step
-
-
----
-
-## 🔍 Questions Answered:
-1. What job types convert the most?  
-2. Which contact method leads to higher product adoption?  
+ 
 
 ---
 ## 📊 Dashboard Preview
