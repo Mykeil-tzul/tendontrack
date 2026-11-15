@@ -64,4 +64,4 @@ function displayStories(filter) {
   $("journey-cards").replaceChildren(...cards);
 }
 $("journey-filter").addEventListener("change", event => displayStories(event.target.value));
-displayStories("featured");
+displayStories($("journey-filter").value);
