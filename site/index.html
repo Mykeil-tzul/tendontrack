@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Review heel raise repetitions and motion across sessions using on-device computer vision.">
+<title>TendonTrack · Achilles Recovery Journal</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.mjs"></script>
+</head>
+<body>
+<header><a href="./" class="brand"><span aria-hidden="true">↗</span>TendonTrack</a><nav aria-label="Navigation"><a href="#analyzer">Analyze</a><a href="#journal">Journal</a><a href="#methods">How it works</a></nav><span class="private">● On-device analysis</span></header>
+<main>
+<section class="hero">
+<div><p class="eyebrow">ACHILLES RECOVERY JOURNAL</p><h1>Recovery, one rep<br>at a time<span>.</span></h1><p class="lead">Review a heel-raise video, see each estimated repetition, and compare movement across sessions.</p><div class="actions"><a class="button primary" href="#analyzer">Analyze a clip</a><button type="button" id="demo">Explore sample sessions</button></div></div>
+<div class="hero-visual" aria-hidden="true">
+<div class="visual-label">HEEL LIFT SIGNAL</div>
+<div class="wave">
+<svg viewBox="0 0 350 170" role="presentation"><defs><linearGradient id="fade" x2="0" y2="1"><stop stop-color="#bde8a0" stop-opacity=".38"/><stop offset="1" stop-color="#bde8a0" stop-opacity="0"/></linearGradient></defs><path d="M0 144 C24 144 43 38 65 38 S107 144 126 144 S150 51 180 51 S210 144 244 144 S274 24 302 24 S332 144 350 144 V170 H0Z" fill="url(#fade)"/><path d="M0 144 C24 144 43 38 65 38 S107 144 126 144 S150 51 180 51 S210 144 244 144 S274 24 302 24 S332 144 350 144" fill="none" stroke="#cbf5aa" stroke-width="4"/><circle cx="65" cy="38" r="5" fill="#e4ffc6"/><circle cx="180" cy="51" r="5" fill="#e4ffc6"/><circle cx="302" cy="24" r="5" fill="#e4ffc6"/></svg>
+</div><div class="visual-footer"><span>Rest</span><span>Lift</span><span>Return</span></div>
+</div>
+</section>
+<p class="boundary"><strong>For tracking prescribed movement.</strong> Follow your clinician’s exercise plan. This prototype does not assess healing, diagnose injury, or clear you to return to sports.</p>
+<section class="layout" id="analyzer">
+<article class="panel"><h2>Analyze a heel-raise clip</h2><p>A side view works best. Keep one person’s full body and the camera-facing foot visible, and start with the heel at rest. Use a 3–30 second clip on level ground.</p>
+<label for="side">Foot closest to camera</label><select id="side"><option value="left">Left foot</option><option value="right">Right foot</option></select>
+<label for="file">Select a video</label><input id="file" type="file" accept="video/*,.mov,.mp4,.webm">
+<p class="small">Your video stays in this browser. Analysis downloads Google’s pose model the first time.</p>
+<video id="video" controls playsinline hidden></video>
+<div class="actions"><button id="analyze" class="primary" type="button" disabled>Analyze video</button><button id="cancel" type="button" hidden>Cancel</button><button id="clear-video" type="button" hidden>Remove video</button></div>
+<progress id="progress" max="1" value="0" hidden></progress><p id="status" role="status"></p></article>
+<article class="panel"><h2>Session results</h2><p id="result-note">Analyze a clip or explore the sample sessions to see how results are displayed.</p>
+<div class="metrics"><div><span>Complete reps</span><strong id="reps">—</strong></div><div><span>Estimated peak lift</span><strong id="lift">—</strong></div><div><span>Usable frames</span><strong id="coverage">—</strong></div></div>
+<canvas id="trace" aria-label="Foot lift over time" role="img"></canvas>
+<div id="rep-details" class="small"></div>
+<button id="save" type="button" disabled>Save metrics on this device</button></article>
+</section>
+<section class="panel journal" id="journal"><div class="panel-head"><div><h2>Session journal</h2><p id="journal-note">Compare sessions recorded from the same side with a similar camera angle.</p></div><div class="actions"><button id="export" type="button" disabled>Export CSV</button><button id="clear" type="button" disabled>Clear saved sessions</button></div></div>
+<label for="journal-side">Show sessions</label><select id="journal-side"><option value="left">Left foot</option><option value="right">Right foot</option></select>
+<canvas id="trend" aria-label="Estimated peak lift by session" role="img"></canvas>
+<div class="scroll"><table><thead><tr><th>Session</th><th>Reps</th><th>Peak lift</th><th>Rep spread</th><th>Usable frames</th><th></th></tr></thead><tbody id="sessions"></tbody></table></div></section>
+<section id="methods" class="methods"><article><h2>What it measures</h2><p>Google MediaPipe estimates the position of your ankle, heel and toe. The app measures how the line from heel to toe tilts compared with the first moment of the clip. That camera-based estimate is not clinical range of motion.</p></article><article><h2>What stays on this device</h2><p>Video and frame data stay in memory. If you save a session, only its summary metrics go into this browser’s local storage. Anyone who shares this browser profile may be able to see those summaries.</p></article><article><h2>Reading the numbers</h2><p>Peak lift is the median of detected rep peaks. Rep spread shows how far apart the middle half of peaks are. Changes can come from camera placement or model error as well as movement.</p></article></section>
+</main>
+<footer>TendonTrack · Computer vision portfolio prototype</footer>
+</body></html>

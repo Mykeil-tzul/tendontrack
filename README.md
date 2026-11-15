@@ -1,58 +1,42 @@
-# Visa Merchant Insights Dashboard
+# TendonTrack · Achilles Recovery Journal
 
-This project simulates how I would use SQL and Tableau to identify trends in customer behavior, product conversions, and high-value user segments.
+TendonTrack is a computer vision prototype for reviewing a heel-raise exercise already prescribed by a clinician. Choose a short side-view video, select the foot closest to the camera, and see the estimated repetition count and a movement trace. Save a summary to compare with future sessions.
 
----
+## Try the app
 
-## Project Goals
-- Identify which job types and contact methods have the highest conversion rates
-- Explore education and loan status impacts on offer acceptance
-- Analyze average account balances by job to find high-value segments
+From the repository root, run:
 
----
-**Dataset:** Bank Marketing Dataset (Kaggle)  
+```sh
+python3 -m http.server 8000 --directory site
+```
 
-## Tools Used
-- **SQL (DuckDB)** – for analysis and KPI creation
-- **Tableau Public** – for dashboard design
-- **VS Code** – to organize SQL files and documentation
-- **bank.csv** dataset from Kaggle (Bank Marketing)
+Open `http://localhost:8000` in Chrome or Edge and choose **Explore sample sessions** to see three synthetic examples. To analyze your own video, select a 3–30 second clip under 150 MB. Use level ground and a still side-view camera, keep one person's full body and heel visible, and start with the heel at rest. Follow the exercise plan your clinician already gave you.
 
----
+The app shows complete estimated repetitions, median peak lift, frame coverage, and rep-to-rep spread when there are at least three detected peaks. Repeat the same camera setup for comparisons.
 
-## 🔍 Questions Answered:
-1. What job types convert the most?  
-2. Which contact method leads to higher product adoption?  
+## How the computer vision works
 
-## Key Insights
-- **Students and retirees** showed the highest conversion rates
-- **Cellular contact** far outperforms telephone and unknown methods
-- **Management and retired** customers hold the highest average balances
+1. The browser samples the video at 10 frames per second and runs Google's [MediaPipe Pose Landmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker).
+2. When the selected ankle, heel, and foot landmarks are visible, it measures the heel-to-toe line's image-plane angle relative to the starting position.
+3. A rep counter looks for a rise followed by a return, using separate rise and return thresholds and short smoothing. Long tracking gaps reset an incomplete repetition.
+4. The journal plots median peak lift for each recorded session by foot. The table also includes rep count, usable frames, and the difference between the 25th and 75th percentile rep peaks.
 
----
+The thresholds are prototype settings. Camera angle, occlusion, foot placement, and landmark errors can affect the measurements. These are image-plane angles. Clinical range of motion, tendon healing, and readiness to return to sport require clinical assessment. This project has not been clinically validated and does not prescribe exercises.
 
-## Files Included
-- `/sql/` – All 5 SQL KPI queries  
-- `/images/` – Dashboard screenshot  
-- `/Dashboard.twbx` – Tableau workbook file  
-- `/data/` – CSV source file
+## Privacy and deployment
 
----
+The app downloads a pinned MediaPipe browser runtime and pretrained model from jsDelivr and Google. Video analysis runs in the browser. The app has no upload endpoint, backend, analytics, or accounts. A video is held in memory until removed or the tab closes.
 
-## Business Value
-This dashboard mirrors the kind of insights Visa Consulting and Analytics (VCA) or GBO team might deliver to merchant clients or card issuers: helping them optimize targeting strategies, understand behavior, and increase ROI on outreach.
+Saving is optional. The browser stores session dates and summary measurements in local storage. It does not store video, landmarks, or filenames. Local storage is accessible to people who share the browser profile. You can remove one session, clear them all, or export the selected foot's summaries as a CSV. Exported files are your responsibility.
 
----
+I used a static browser app so the demo can run without a server holding health information. A patient-facing release would require clinical validation and appropriate privacy, access-control, and retention policies.
 
-## Challenges Faced
+## Tests
 
-- DuckDB initially wasn't installed — solved it via Homebrew terminal install  
-- Dataset had to be manually downloaded and prepped due to GitHub preview limitations  
-- Figuring out Tableau's Quick Table Calculations and percent conversions took trial + error  
-- Learned how to properly structure GitHub projects and push using terminal step-by-step
- 
+With Node.js 22 installed:
 
----
-## 📊 Dashboard Preview
-![Dashboard Screenshot](images/visa_dashboard.png)
+```sh
+node --test tests/*.test.mjs
+```
 
+The tests cover complete and incomplete reps, tracking gaps, landmark confidence, and camera mirroring. The demo uses synthetic motion and does not establish real-video accuracy.
