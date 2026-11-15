@@ -4,6 +4,8 @@ TendonTrack is a computer vision prototype for reviewing a heel-raise exercise a
 
 ## Try the app
 
+**[Open TendonTrack](https://mykeil-tzul.github.io/tendontrack/)**
+
 From the repository root, run:
 
 ```sh
