@@ -48,3 +48,11 @@ node --test tests/*.test.mjs
 ```
 
 The tests cover complete and incomplete reps, tracking gaps, landmark confidence, and camera mirroring. The demo uses synthetic motion and does not establish real-video accuracy.
+
+## Recovery guide and comeback library
+
+Start with a question such as “I heard a pop and felt like someone kicked me,” “What’s the difference between surgery and nonsurgical treatment?” or “What does PT do?” TendonTrack uses a local, rules-based answer guide with links to AAOS, sports medicine, NHS guidance and a randomized treatment trial. It prioritizes supported urgent symptom phrases and defers when it cannot match a topic. It does not send questions to a model or offer diagnoses or exercise prescriptions.
+
+The story library opens with Kevin Durant, Klay Thompson, Breanna Stewart, Dominique Wilkins and Kobe Bryant. Use the filter to find Jayson Tatum, Damian Lillard, Tyrese Haliburton, Kelsey Plum and NFL examples. Direct video links and click-to-load YouTube players use the original publisher. Loading a player contacts YouTube. These stories describe individual experiences rather than recovery targets.
+
+Use the guide when preparing for an appointment. Use the analyzer and journal only after your clinician has prescribed heel raises. The medical content is educational and has not undergone clinical review.

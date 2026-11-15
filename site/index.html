@@ -8,12 +8,13 @@
 <title>TendonTrack · Achilles Recovery Journal</title>
 <link rel="stylesheet" href="style.css">
 <script type="module" src="app.mjs"></script>
+<script type="module" src="education.mjs"></script>
 </head>
 <body>
-<header><a href="./" class="brand"><span aria-hidden="true">↗</span>TendonTrack</a><nav aria-label="Navigation"><a href="#analyzer">Analyze</a><a href="#journal">Journal</a><a href="#methods">How it works</a></nav><span class="private">● On-device analysis</span></header>
+<header><a href="./" class="brand"><span aria-hidden="true">↗</span>TendonTrack</a><nav aria-label="Navigation"><a href="#guide">Recovery guide</a><a href="#journeys">Comeback stories</a><a href="#analyzer">Analyze</a><a href="#journal">Journal</a><a href="#methods">How it works</a></nav><span class="private">● On-device analysis</span></header>
 <main>
 <section class="hero">
-<div><p class="eyebrow">ACHILLES RECOVERY JOURNAL</p><h1>Recovery, one rep<br>at a time<span>.</span></h1><p class="lead">Review a heel-raise video, see each estimated repetition, and compare movement across sessions.</p><div class="actions"><a class="button primary" href="#analyzer">Analyze a clip</a><button type="button" id="demo">Explore sample sessions</button></div></div>
+<div><p class="eyebrow">ACHILLES RECOVERY JOURNAL</p><h1>Recovery, one rep<br>at a time<span>.</span></h1><p class="lead">Understand the injury, hear how other athletes worked through recovery, and track heel raises once your clinician has prescribed them.</p><div class="actions"><a class="button primary" href="#guide">Start with the recovery guide</a><button type="button" id="demo">Explore sample sessions</button></div></div>
 <div class="hero-visual" aria-hidden="true">
 <div class="visual-label">HEEL LIFT SIGNAL</div>
 <div class="wave">
@@ -22,6 +23,39 @@
 </div>
 </section>
 <p class="boundary"><strong>For tracking prescribed movement.</strong> Follow your clinician’s exercise plan. This prototype does not assess healing, diagnose injury, or clear you to return to sports.</p>
+<section class="panel journal" id="guide">
+<p class="eyebrow">FROM INJURY TO REHAB</p>
+<h2>Ask the Achilles guide</h2>
+<p>Start with what happened or what you want to ask your care team. The guide matches your question to a sourced answer on this device.</p>
+<div class="actions">
+<button type="button" data-question="I heard a pop and felt like someone kicked my calf">I felt a pop</button>
+<button type="button" data-question="How do doctors diagnose a tear?">How it’s diagnosed</button>
+<button type="button" data-question="Surgery or nonoperative treatment?">Surgery vs. no surgery</button>
+<button type="button" data-question="When can I walk without a boot?">Boot and walking</button>
+<button type="button" data-question="Why does physical therapy matter?">What PT does</button>
+<button type="button" data-question="When can I return to sport?">Returning to activity</button>
+</div>
+<details><summary>Three situations where the guide can help</summary>
+<ul>
+<li><strong>A sudden injury.</strong> You push off to run for a ball, feel a pop behind your ankle and have trouble pushing off. Use the guide to recognize the signs and seek prompt assessment.</li>
+<li><strong>A decision after diagnosis.</strong> Your clinician has offered surgery or a structured boot and rehab plan. Read the trade-offs and bring questions about your work, activity goals and follow-up.</li>
+<li><strong>Starting PT.</strong> Ask what you can do now and what your clinician will use to decide when to progress. Once heel raises are prescribed, the journal can track comparable sessions.</li>
+</ul></details>
+<form id="guide-form">
+<label for="guide-question">Your question</label>
+<div class="actions"><input id="guide-question" maxlength="400" required placeholder="What should I ask at my first appointment?"><button class="primary" type="submit">Find an answer</button></div>
+</form>
+<div id="guide-answer" aria-live="polite" class="guide-answer"></div>
+<p class="small">Questions stay in this tab. This educational guide cannot diagnose an injury or choose a treatment.</p>
+</section>
+<section class="panel journal" id="journeys">
+<p class="eyebrow">THE ROAD BACK</p>
+<h2>My top five comeback stories to watch first</h2>
+<p>Each story reflects one athlete’s circumstances. Watch for how they talk about setbacks, patience and rebuilding confidence.</p>
+<label for="journey-filter">Browse stories</label>
+<select id="journey-filter"><option value="featured">Start with my top five</option><option value="all">All journeys</option><option>NBA</option><option>WNBA</option><option>NFL</option><option>Soccer</option><option>Tennis</option></select>
+<div id="journey-cards" class="journeys"></div>
+</section>
 <section class="layout" id="analyzer">
 <article class="panel"><h2>Analyze a heel-raise clip</h2><p>A side view works best. Keep one person’s full body and the camera-facing foot visible, and start with the heel at rest. Use a 3–30 second clip on level ground.</p>
 <label for="side">Foot closest to camera</label><select id="side"><option value="left">Left foot</option><option value="right">Right foot</option></select>
