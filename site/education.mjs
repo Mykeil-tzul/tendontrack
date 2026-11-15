@@ -62,6 +62,7 @@ function displayStories(filter) {
     return [article];
   });
   $("journey-cards").replaceChildren(...cards);
+  $("journey-count").textContent = `Showing ${cards.length} of ${journeys.length} journeys`;
 }
 $("journey-filter").addEventListener("change", event => displayStories(event.target.value));
 displayStories($("journey-filter").value);

@@ -8,7 +8,7 @@
 <title>TendonTrack · Achilles Recovery Journal</title>
 <link rel="stylesheet" href="style.css">
 <script type="module" src="app.mjs"></script>
-<script type="module" src="education.mjs"></script>
+<script type="module" src="education.mjs?v=all-journeys-1"></script>
 </head>
 <body>
 <header><a href="./" class="brand"><span aria-hidden="true">↗</span>TendonTrack</a><nav aria-label="Navigation"><a href="#guide">Recovery guide</a><a href="#journeys">Comeback stories</a><a href="#analyzer">Analyze</a><a href="#journal">Journal</a><a href="#methods">How it works</a></nav><span class="private">● On-device analysis</span></header>
@@ -54,6 +54,7 @@
 <p>Each story reflects one athlete’s circumstances. Watch for how they talk about setbacks, patience and rebuilding confidence.</p>
 <label for="journey-filter">Browse stories</label>
 <select id="journey-filter"><option value="all">All journeys</option><option value="featured">My top five</option><option>NBA</option><option>WNBA</option><option>NFL</option><option>Soccer</option><option>Tennis</option></select>
+<p id="journey-count" class="small" role="status"></p>
 <div id="journey-cards" class="journeys"></div>
 </section>
 <section class="layout" id="analyzer">
