@@ -2,6 +2,12 @@
 
 TendonTrack is a computer vision prototype for reviewing a heel-raise exercise already prescribed by a clinician. Choose a short side-view video, select the foot closest to the camera, and see the estimated repetition count and a movement trace. Save a summary to compare with future sessions.
 
+## Why I built TendonTrack
+
+I ruptured my Achilles in June 2026, and it changed my life. I love playing basketball and played professionally, so being away from the game has been hard. During recovery, I realized how many people go through this injury, from athletes in all kinds of sports to people who have never played competitively.
+
+I built TendonTrack to help someone else going through Achilles rehab see how their movement changes from one session to the next. I wanted to make it easier to see progress while following the exercise plan their clinician gave them.
+
 ## Try the app
 
 **[Open TendonTrack](https://mykeil-tzul.github.io/tendontrack/)**
